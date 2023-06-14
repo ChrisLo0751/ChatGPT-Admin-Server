@@ -20,6 +20,16 @@ func (s *UserService) Login(ctx context.Context, req *pb.LoginRequest) (*pb.Logi
 	return &pb.LoginReply{}, nil
 }
 func (s *UserService) Register(ctx context.Context, req *pb.RegisterRequest) (*pb.RegisterReply, error) {
+	user := &biz.User{
+		Username: req.Body.Username,
+		Password: req.Body.Password,
+		Email:    req.Body.Email,
+	}
+
+	err := s.user.Register(ctx, user)
+	if err != nil {
+		return nil, err
+	}
 	return &pb.RegisterReply{}, nil
 }
 func (s *UserService) GetUser(ctx context.Context, req *pb.GetUserRequest) (*pb.GetUserReply, error) {
