@@ -1,0 +1,76 @@
+# Generated with protoc-gen-openapi
+# https://github.com/google/gnostic/tree/master/cmd/protoc-gen-openapi
+
+openapi: 3.0.3
+info:
+    title: User API
+    version: 0.0.1
+paths:
+    /api/v1/login:
+        post:
+            tags:
+                - User
+            operationId: User_Login
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/api.user.v1.LoginRequest_Body'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.user.v1.LoginReply'
+    /api/v1/users:
+        post:
+            tags:
+                - User
+            operationId: User_Register
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/api.user.v1.RegisterRequest_Body'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.user.v1.RegisterReply'
+components:
+    schemas:
+        api.user.v1.LoginReply:
+            type: object
+            properties:
+                msg:
+                    type: string
+        api.user.v1.LoginRequest_Body:
+            type: object
+            properties:
+                username:
+                    type: string
+                password:
+                    type: string
+        api.user.v1.RegisterReply:
+            type: object
+            properties:
+                msg:
+                    type: string
+        api.user.v1.RegisterRequest_Body:
+            type: object
+            properties:
+                username:
+                    type: string
+                password:
+                    type: string
+                email:
+                    type: string
+                code:
+                    type: string
+tags:
+    - name: User
