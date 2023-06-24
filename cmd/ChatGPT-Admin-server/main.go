@@ -2,6 +2,7 @@ package main
 
 import (
 	"flag"
+	"fmt"
 	"os"
 
 	"chatgpt-admin-server/internal/conf"
@@ -58,6 +59,8 @@ func main() {
 		"trace.id", tracing.TraceID(),
 		"span.id", tracing.SpanID(),
 	)
+	root, _ := os.Getwd()
+	fmt.Println(root)
 	c := config.New(
 		config.WithSource(
 			file.NewSource(flagconf),
@@ -68,7 +71,6 @@ func main() {
 	if err := c.Load(); err != nil {
 		panic(err)
 	}
-
 	var bc conf.Bootstrap
 	if err := c.Scan(&bc); err != nil {
 		panic(err)
