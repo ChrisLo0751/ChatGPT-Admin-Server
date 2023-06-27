@@ -46,7 +46,7 @@ func NewDB(c *conf.Data) (*ent.Client, error) {
 	})
 	client := ent.NewClient(ent.Driver(sqlDrv))
 	if err != nil {
-		log.Errorf("failed opening connection to sqlite: %v", err)
+		log.Errorf("failed opening connection to mysql: %v", err)
 		return nil, err
 	}
 	// Run the auto migration tool.
